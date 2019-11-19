@@ -12,9 +12,11 @@ var fill = d3.scaleLinear()
         .domain([0, 25, 50, 75, 100, 125, 150])
         .range(["#98C0D9", "#8DA1D7", "#8A82D6", "#A178D5", 
                 "#C06ED4", "#D364C1", "#d25a94"]);
+
 var setcolor = d3.scaleLinear()
         .domain([1, 2, 3, 4, 5])
         .range(["#8A82D6", "#8A82D6", "#8A82D6", "#A178D5", "#d25a94"]);
+
 var margin = {top: 30, right: 50, bottom: 30, left: 50},
 width = 800 - margin.left - margin.right,
 height = 600 - margin.top - margin.bottom;
@@ -163,14 +165,6 @@ function loadData(){
 
     }
 
-
-    // function showNewWords(vis, i) {
-    //     i = i || 0;
-
-    //     vis.update(words[i ++ % words.length])
-    //     setTimeout(function() { showNewWords(vis, i + 1)}, 2500)
-    //     }
-
     window.showNewWordsTwo = function (vis, instance) {
         vis.update(words[instance]);
         $("#date-slider").slider("value", instance);
@@ -211,7 +205,6 @@ function loadData(){
             step: 1,
             slide: function(event, ui) {                        
                 $("#dateLabel1").text(formatTime(new Date(time[ui.value])));
-                // $("#dateLabel2").text(formatTime(new Date(time[ui.values[1]])));
                 instance = time.indexOf(time[ui.value]);
                 showNewWordsTwo(wordCloud(), instance);
                 setBackground(instance);
@@ -240,12 +233,10 @@ $("#play-button")
     var button = $(this);
     if (button.text() == "Play"){
         button.text("Pause");
-        // showNewWords(wordCloud());
         interval = setInterval(step, 2500);        
     }
     else {
         button.text("Play");
-        // d3.select(this).finish();
         clearInterval(interval);
     }
 })
@@ -262,17 +253,12 @@ $("#var-select")
     updatevis();
 })
 
-// $("#date-slider").slider("value", time[instance]);
 
 function updatevis() {
     
     var t = d3.transition()
         .duration(100);
-    
-    // var any = d3.selectAll("svg")
-    //     .exit()
-    //     .attr("class", "exit")
-    //     .remove();
+
     var cloud = svg.selectAll("g text")
                             .data(words, function(d) { return d.text; });
 
@@ -281,15 +267,6 @@ function updatevis() {
          .remove();
 
     instance = 0;
-
-    // $("#play-button").off();
-    // d3.selectAll("svg").remove();
     
     loadData();
-
-    // Update the time label
-    // timeLabel.text(+(time + 1800))
-    // $("#year")[0].innerHTML = +(time + 1800)
-
-    // $("#date-slider").slider("value", +(time + 1800))
     }

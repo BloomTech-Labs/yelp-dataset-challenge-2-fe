@@ -28,7 +28,7 @@ var svg = d3.select("#chart-area").append("svg")
     .attr("transform", "translate(" + width/2 + "," + height/2 + ")");
 
 function loadData(){
-    d3.json('https://wordcloudapp.herokuapp.com/api', {
+    d3.json('https://datavizserver.herokuapp.com/api', {
         method:"POST",
         body: JSON.stringify({
         business_id: ItemSelect
@@ -216,7 +216,7 @@ function loadData(){
 
 function getInput(){
     if (typeof ItemSelect == 'undefined'){
-        ItemSelect = '4JNXUYY8wbaaDmk3BPzlWw';
+        ItemSelect = 'YOy1tOiMMOkrCQ4mO2i3eQ';
         console.log(ItemSelect);
         return ItemSelect;
     } else {

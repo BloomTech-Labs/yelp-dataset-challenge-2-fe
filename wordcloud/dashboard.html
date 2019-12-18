@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>Yelp Insights Dashboard</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashstyle.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img id="logo"></a>      
+        </div>
+    </nav>
+
+    <!-- Bootstrap grid setup -->
+    <div class="container">
+                <div id="selections" class="row">
+                    <div class="col-md-4">
+                        <select id="var-select" class="form-control">
+                            <option selected value="dUffgo9Lh_Vk9TLuFR5ywg">dUffgo9Lh_Vk9TLuFR5ywg</option>
+                            <option value="RESDUcs7fIiihp38-d6_6g">RESDUcs7fIiihp38-d6_6g</option>
+                            <option value="cYwJA2A6I12KNkm2rtXd5g">cYwJA2A6I12KNkm2rtXd5g</option>
+                            <option value="f4x1YBxkLrZg652xt2KR5g">f4x1YBxkLrZg652xt2KR5g</option>
+                            <option value="5LNZ67Yw9RD6nf4_UhXOjw">5LNZ67Yw9RD6nf4_UhXOjw</option>
+                            <option value="K7lWdNUhCbcnEvI0NhGewg">K7lWdNUhCbcnEvI0NhGewg</option>
+                            <option value="ujHiaprwCQ5ewziu0Vi9rw">ujHiaprwCQ5ewziu0Vi9rw</option>
+                            <option value="0iJcWcDjaC4CVpR0uQFe5Q">0iJcWcDjaC4CVpR0uQFe5Q</option>
+                            <option value="zsfyX2vDxM1PL2BaUlZHGg">zsfyX2vDxM1PL2BaUlZHGg</option>
+                            <option value="5b8x_kMnx_r_1_UOyD_poQ">5b8x_kMnx_r_1_UOyD_poQ</option>
+                            <option value="M25h3w-rP_mwLCgKmIalwQ">M25h3w-rP_mwLCgKmIalwQ</option>
+                            <option value="Xtkm095And0gdPQjUGB5iA">Xtkm095And0gdPQjUGB5iA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" id="stats">
+                    <div class="col-md-3" id="stats-area1">
+                        <h3>Oregano's Pizza Bistro</h3>
+                        <p>1008 E Camelback Rd</p>
+                        <p>Phoenix, Arizona</p>
+                    </div>
+                    <div class="col-md-3" id="stats-area2">
+                        <h3>Star Rating</h3>
+                        <p>3.5</p>
+                    </div>  
+                    <div class="col-md-3" id="stats-area3">
+                        <h3>Total Reviews</h3>
+                        <p>563</p>
+                    </div> 
+                    <div class="col-md-3" id="stats-area4">
+                        <h3>Categories</h3>
+                        <p>Restaurants, Pizza, Sandwiches, Italian</p>
+                    </div>  
+                </div>
+                <div class="row" id="charts">
+                    <div class="col-md-4" id="chart-area1"></div>
+                    <div class="col-md-4" id="chart-area2"></div>  
+                    <div class="col-md-4" id="chart-area3"></div>  
+                    <div class="col-md-4" id="chart-area4"></div>  
+                    <div class="col-md-4" id="chart-area5"></div>
+                    <div class="col-md-4" id="chart-area6"></div>  
+                </div>
+            </div>
+
+<!-- External JS Libraries -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/d3.min.js"></script>
+
+<!-- Custom JS -->
+<script src="js/lineChart.js"></script>
+<script src="js/lineChart2.js"></script>
+<script src="js/bellcurve.js"></script>
+<script src="js/posnegbarchart.js"></script>
+<script src="js/histogram.js"></script>
+<script src="js/table.js"></script>
+<script src="https://cdn.jsdelivr.net/jstat/latest/jstat.min.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

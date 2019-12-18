@@ -1,0 +1,137 @@
+#charts svg {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#logo {
+  height:50px;
+}
+
+.navbar-brand {
+  height: 60px;
+  padding: 5px 0px;
+}
+
+body {
+  background-color: #F1F3F3    
+}
+
+.axis {
+	font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 2px;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #777;
+  stroke-width: 3px;
+}
+  
+.hover-line {
+  stroke: #777;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
+
+#selections .col-md-4 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+text {
+  font: 12px monospace;
+  /* color: white; */
+  }
+  
+  
+  .enter {
+	fill: green;
+  }
+  
+  .update {
+	fill: #333;
+  }
+  
+  .exit {
+	fill: brown;
+  }
+
+
+th {
+    text-align: left;
+    font-weight: bold;
+}
+
+table {
+    text-align: left;
+    padding-right: 2px;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 3px;
+    width: 60%;
+}
+
+
+thead th {
+  font-weight: 400;
+  background: #8a97a0;
+  color: #FFF;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+tr {    
+opacity: 0;
+animation-name: fadeIn;
+animation-duration: 3s;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+}
+@keyframes fadeIn {
+from {
+  opacity: 0;
+}
+
+to {
+  opacity: 1;
+}
+}
+
+tr {
+  background: #f4f7f8;
+  font: 12px monospace;
+  border-bottom: 1px solid #FFF;
+  margin-bottom: 5px;
+  line-height: 20px;
+  text-indent: 10px;
+}
+
+tr:nth-child(even) {
+  background: #e8eeef;
+}
+
+th, tr {
+  text-align: left;
+  padding: 3px;
+  font-weight: 300;
+}

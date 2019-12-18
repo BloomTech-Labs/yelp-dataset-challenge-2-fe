@@ -62,12 +62,12 @@ Histogram.prototype.wrangleData = function(){
 
     vis.svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + vis.height + ")")
+        .attr("transform", "translate(0," + vis.height*1.09 + ")")
         .call(vis.xAxis)
         .selectAll("text")
             .style("text-anchor", "middle")
-            .attr("transform", "translate(" + 0 + 
-            ", " + 30 + ")")
+            // .attr("transform", "translate(" + 0 + 
+            // ", " + 30 + ")")
 
     // vis.svg.append("g")
     //     .attr("class", "y axis")

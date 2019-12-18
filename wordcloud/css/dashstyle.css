@@ -36,6 +36,10 @@
   background-color: #27293d
 }
 
+#stats p {
+  color: #2081d9
+}
+
 #stats-area2, #stats-area3 p {
   font-size: 25px;
 }

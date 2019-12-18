@@ -8,13 +8,54 @@
   height:50px;
 }
 
+#var-select {
+  font-family: 'Poppins', sans-serif; 
+}
+
 .navbar-brand {
   height: 60px;
   padding: 5px 0px;
 }
 
+.navbar{
+  background-color: #1e1e2e !important;
+  border-bottom: #1e1e2e !important;
+}
+
+#stats {
+  margin-left: 3px;
+  margin-right: -90px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background-color: #27293d
+}
+
+#stats-area2, #stats-area3 p {
+  font-size: 25px;
+}
+
+#chartsbottom {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+h3, p {
+  color: #fff
+}
+
 body {
-  background-color: #F1F3F3    
+  background-color: #1e1e2e;
+  text-align: left;
+  font-family: 'Poppins', sans-serif; 
+  /* font-size: .875rem; */
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#chartsbottom {
+  background-color: #27293d;
+  margin-left: 1px;
+  margin-right: -90px;
 }
 
 .axis {
@@ -52,18 +93,17 @@ body {
 
 #selections .col-md-4 {
 	padding-top: 10px;
-	padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 text {
-  font: 12px monospace;
-  /* color: white; */
+  font-family: 'Poppins', sans-serif;
   }
   
   
-  .enter {
+  /* .enter {
 	fill: green;
-  }
+  } */
   
   .update {
 	fill: #333;
@@ -96,9 +136,9 @@ thead th {
 }
 
 table {
-  font-family: arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 80%;
 }
 tr {    
 opacity: 0;
@@ -119,7 +159,7 @@ to {
 
 tr {
   background: #f4f7f8;
-  font: 12px monospace;
+  font-family: 'Poppins', sans-serif;
   border-bottom: 1px solid #FFF;
   margin-bottom: 5px;
   line-height: 20px;
@@ -134,4 +174,39 @@ th, tr {
   text-align: left;
   padding: 3px;
   font-weight: 300;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.x.axis line {
+  stroke: #2081d9;
+  stroke-width: 0.2px;
+}
+
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+
+.x.axis path {
+  fill: none;
+  stroke: #2081d9;
+  stroke-width: 0.2px;
+}
+
+.tick text {
+  fill: #2081d9;
+}
+
+/* #chart-area3 {
+  background-color: #27293d;
+  padding-left: 20px;
+} */
+
+.y.axis line,
+.y.axis path {
+  fill: none;
+  stroke: #2081d9;
+  stroke-width: 0.2px;
 }

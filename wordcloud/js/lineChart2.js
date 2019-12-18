@@ -13,17 +13,42 @@ LineChart2 = function(_parentElement){
 LineChart2.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { left:50, right:50, top:50, bottom:50 };
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
-    vis.width = 400 - vis.margin.left - vis.margin.right;
+    vis.margin = { left:70, right:50, top:90, bottom:50 };
+    vis.height = 320 - vis.margin.top - vis.margin.bottom;
+    vis.width = 450 - vis.margin.left - vis.margin.right;
 
     vis.svg = d3.select(vis.parentElement)
         .append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+
+    vis.svg.append("rect")
+        .attr("id", "shadow")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("transform", "translate(" + 52 + 
+            ", " + 30 + ")")
+        .attr("fill", "#27293d");
+
+
     vis.g = vis.svg.append("g")
         .attr("transform", "translate(" + vis.margin.left + 
             ", " + vis.margin.top + ")");
+
+    vis.defs = vis.svg.append("defs");
+
+    //Filter for the outside glow
+    vis.filter = vis.defs.append("filter")
+        .attr("id","glow");
+    vis.filter.append("feGaussianBlur")
+        .attr("stdDeviation","4.5")
+        .attr("result","coloredBlur");
+    vis.feMerge = vis.filter.append("feMerge");
+    vis.feMerge.append("feMergeNode")
+        .attr("in","coloredBlur");
+    vis.feMerge.append("feMergeNode")
+        .attr("in","SourceGraphic");
+        
 
     vis.t = function() { return d3.transition().duration(1000); }
 
@@ -40,7 +65,7 @@ LineChart2.prototype.initVis = function(){
     .attr("y", -20)
     .attr("text-anchor", "middle")
     // .attr("font-family", "azo-sans-web, sans-serif")
-    // .style('fill', '#fff')
+    .style('fill', '#fff')
     .text("Number of Reviews")
 
     vis.x = d3.scaleTime().range([0, vis.width]);
@@ -79,8 +104,8 @@ LineChart2.prototype.updateVis = function(){
     // Update axes
     vis.xAxisCall.scale(vis.x);
     vis.xAxis.transition(vis.t()).call(vis.xAxisCall);
-    vis.yAxisCall.scale(vis.y);
-    vis.yAxis.transition(vis.t()).call(vis.yAxisCall);
+    // vis.yAxisCall.scale(vis.y);
+    // vis.yAxis.transition(vis.t()).call(vis.yAxisCall);
 
     // Discard old tooltip elements
     d3.select("#chart-area2 .focus").remove();
@@ -105,6 +130,7 @@ LineChart2.prototype.updateVis = function(){
 
     focus.append("text")
         .attr("x", 15)
+        .style("fill", "#fff")
         .attr("dy", ".31em");
 
     vis.svg.append("rect")
@@ -150,9 +176,12 @@ LineChart2.prototype.updateVis = function(){
             .attr("stroke-dashoffset", 0);
 
     vis.g.select(".line")
-        .attr("stroke", color(5))
+        .attr("stroke", "#2081d9")
         .transition(vis.t)
         .attr("d", line(vis.dataFiltered));
+    
+    d3.selectAll(".line")
+        .style("filter", "url(#glow)");
 
 };
 

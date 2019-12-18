@@ -18,9 +18,9 @@ BellCurve.prototype.initVis = function(){
     
     vis.array = Random_normal_Dist(vis.mean, vis.stddev);
     
-    vis.margin = { left:50, right:100, top:50, bottom:50 };
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
-    vis.width = 400 - vis.margin.left - vis.margin.right;
+    vis.margin = { left:50, right:50, top:0, bottom:30 };
+    vis.height = 280 - vis.margin.top - vis.margin.bottom;
+    vis.width = 450 - vis.margin.left - vis.margin.right;
 
 	vis.x = d3.scaleLinear().rangeRound([0, vis.width]);
 
@@ -32,7 +32,7 @@ BellCurve.prototype.initVis = function(){
 
     vis.y = d3.scaleLinear()
             .domain([0, vis.max_p])
-            .range([vis.height, 0]);
+            .range([vis.height, 80]);
 
     vis.svg = d3.select(vis.parentElement)
             .append("svg")
@@ -40,6 +40,12 @@ BellCurve.prototype.initVis = function(){
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append("g")
             .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+
+    vis.svg.append("rect")
+            .attr("id", "shadow")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("fill", "#27293d");
 
     vis.gX = vis.svg.append("g")
             .attr("class", "x axis")
@@ -55,8 +61,9 @@ BellCurve.prototype.initVis = function(){
     vis.title = vis.svg.append("text")
                 .attr("class", "chart-label")
                 .attr("x", vis.width/2)
-                .attr("y", -20)
+                .attr("y", 40)
                 .attr("text-anchor", "middle")
+                .style("fill", "#fff")
                 // .attr("font-family", "azo-sans-web, sans-serif")
                 // .style('fill', '#fff')
                 .text("Sector Ranking")
@@ -85,7 +92,7 @@ BellCurve.prototype.initVis = function(){
                 .ease(d3.easeLinear)
                 // .delay((d, i) => { return i * 100; })
             .style("opacity", 1)
-            .style("fill", "#FE4A49")
+            .style("fill", "#2081d9")
 
    //no clip path
     vis.svg.append("path")
@@ -101,19 +108,19 @@ BellCurve.prototype.initVis = function(){
         .attr("id", "cutoffline")
         .attr("x1", 150) 
             .attr("x2", 150)
-            .attr("y1", 10)
+            .attr("y1", 80)
             .attr("y2", 0)
             .transition()
                 .duration(800)
                 .ease(d3.easeLinear)
             .attr("y2", vis.height)
-        .style("stroke", "#600000") 
+        .style("stroke", "#2081d9") 
   
     vis.svg.append("text") 
         .attr("id", "cutofflbl")
             .attr("dx",5)
         .attr("x", 150)  
-            .attr("y", 10)  
+            .attr("y", 80)  
             .style("font-family","Franklin Gothic Book")
             .style("font-size","11px")
         .style("opacity", 0)
@@ -121,8 +128,8 @@ BellCurve.prototype.initVis = function(){
             .duration(800)
             .ease(d3.easeLinear)
         .style("opacity", 1)
-        .style("fill", "#600000")
-            .text("Percentile: " + filteredData[0].percentile.toFixed(2))
+        .style("fill", "#fff")
+            .text("Percentile: " + filteredData[0].percentile.toFixed(0))
    
 
     function Random_normal_Dist(mean, sd) {

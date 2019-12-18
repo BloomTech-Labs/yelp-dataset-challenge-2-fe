@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="css/jquery.auto-complete.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/dashstyle.css">
 </head>
@@ -25,31 +28,18 @@
     <!-- Bootstrap grid setup -->
     <div class="container">
                 <div id="selections" class="row">
-                    <div class="col-md-4">
-                        <select id="var-select" class="form-control">
-                            <option selected value="dUffgo9Lh_Vk9TLuFR5ywg">dUffgo9Lh_Vk9TLuFR5ywg</option>
-                            <option value="RESDUcs7fIiihp38-d6_6g">RESDUcs7fIiihp38-d6_6g</option>
-                            <option value="cYwJA2A6I12KNkm2rtXd5g">cYwJA2A6I12KNkm2rtXd5g</option>
-                            <option value="f4x1YBxkLrZg652xt2KR5g">f4x1YBxkLrZg652xt2KR5g</option>
-                            <option value="5LNZ67Yw9RD6nf4_UhXOjw">5LNZ67Yw9RD6nf4_UhXOjw</option>
-                            <option value="K7lWdNUhCbcnEvI0NhGewg">K7lWdNUhCbcnEvI0NhGewg</option>
-                            <option value="ujHiaprwCQ5ewziu0Vi9rw">ujHiaprwCQ5ewziu0Vi9rw</option>
-                            <option value="0iJcWcDjaC4CVpR0uQFe5Q">0iJcWcDjaC4CVpR0uQFe5Q</option>
-                            <option value="zsfyX2vDxM1PL2BaUlZHGg">zsfyX2vDxM1PL2BaUlZHGg</option>
-                            <option value="5b8x_kMnx_r_1_UOyD_poQ">5b8x_kMnx_r_1_UOyD_poQ</option>
-                            <option value="M25h3w-rP_mwLCgKmIalwQ">M25h3w-rP_mwLCgKmIalwQ</option>
-                            <option value="Xtkm095And0gdPQjUGB5iA">Xtkm095And0gdPQjUGB5iA</option>
-                        </select>
+                    <div class="col-md-6">
+                        <input id="var-select" class="form-control" placeholder="search for a business">
                     </div>
                 </div>
                 <div class="row" id="stats">
                     <div class="col-md-3" id="stats-area1">
                         <h3>Oregano's Pizza Bistro</h3>
-                        <p>1008 E Camelback Rd</p>
-                        <p>Phoenix, Arizona</p>
+                        <p id="address">1008 E Camelback Rd</p>
+                        <p id="state">Phoenix, Arizona</p>
                     </div>
                     <div class="col-md-3" id="stats-area2">
-                        <h3>Star Rating</h3>
+                        <h3>Average Stars</h3>
                         <p>3.5</p>
                     </div>  
                     <div class="col-md-3" id="stats-area3">
@@ -61,13 +51,16 @@
                         <p>Restaurants, Pizza, Sandwiches, Italian</p>
                     </div>  
                 </div>
-                <div class="row" id="charts">
-                    <div class="col-md-4" id="chart-area1"></div>
-                    <div class="col-md-4" id="chart-area2"></div>  
+                <div class="row" id="chartstop">
+                    <div class="col-md-8" id="chart-area1"></div>
                     <div class="col-md-4" id="chart-area3"></div>  
+                    <div class="col-md-4" id="chart-area2"></div> 
+                </div>
+                <div class="row" id="chartsbottom"> 
                     <div class="col-md-4" id="chart-area4"></div>  
                     <div class="col-md-4" id="chart-area5"></div>
-                    <div class="col-md-4" id="chart-area6"></div>  
+                    <div class="col-md-4" id="chart-area6"></div>
+                </div>  
                 </div>
             </div>
 
@@ -76,6 +69,9 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/d3.min.js"></script>
+<script src="js/jquery.auto-complete.js"></script>
+<script src="js/map.js"></script>
+<script src="js/autocomp.js"></script>
 
 <!-- Custom JS -->
 <script src="js/lineChart.js"></script>

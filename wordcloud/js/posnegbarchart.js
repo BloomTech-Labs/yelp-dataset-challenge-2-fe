@@ -13,24 +13,34 @@ PosNegChart = function(_parentElement, _variable, _title){
 PosNegChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { left:50, right:70, top:70, bottom:50 };
+    vis.margin = { left:70, right:70, top:70, bottom:50 };
     vis.height = 500 - vis.margin.top - vis.margin.bottom;
     vis.width = 400 - vis.margin.left - vis.margin.right;
 
     vis.svg = d3.select("#chart-area4")
             .append("svg")
+                .attr("id", "posnegchart")
                 .attr("width", vis.width + vis.margin.left + vis.margin.right)
-                .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
+                .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+
+    vis.svg.append("rect")
+                .attr("id", "shadow")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("fill", "#27293d");
+
+    vis.svg.append("g")
                 .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     vis.title = vis.svg.append("text")
     .attr("class", "chart-label")
     .attr("x", vis.width/2)
     .attr("y", -20)
+    .attr("transform", "translate(" + 70 + 
+                    ", " + 80 + ")")
     .attr("text-anchor", "middle")
     // .attr("font-family", "azo-sans-web, sans-serif")
-    // .style('fill', '#fff')
+    .style('fill', '#fff')
     .text("Top Positive and Negative Phrases")
 
     vis.x = d3.scaleLinear()
@@ -56,9 +66,11 @@ PosNegChart.prototype.wrangleData = function(){
             .data(vis.dataFiltered)
           .enter().append("rect")
             .attr("class", "bar")
+            .attr("transform", "translate(" + 70 + 
+                    ", " + 80 + ")")
             .attr("y", function(d){ return vis.y(d.chunks); })
 						.attr("height", vis.y.bandwidth())
-                        .attr("fill", function(d){ return d.sentiment < 0 ? "#d7191c": "#1a9641"; })
+                        .attr("fill", function(d){ return d.sentiment < 0 ? "#d7191c": "#2081d9"; })
             .attr("x",  d => { return vis.width/2; })
                         .attr("width", 0)
                             .transition()
@@ -78,6 +90,8 @@ PosNegChart.prototype.wrangleData = function(){
             .data(vis.dataFiltered)
         .enter().append("text")
             .attr("class", "value")
+            .attr("transform", "translate(" + 70 + 
+                    ", " + 80 + ")")
             .attr("y", function(d){ return vis.y(d.chunks); })
             .attr("dy", vis.y.bandwidth() - 2.55)
             .attr("x",  d => { return vis.width/2; })
@@ -116,6 +130,10 @@ PosNegChart.prototype.wrangleData = function(){
             .data(vis.dataFiltered)
         .enter().append("text")
             .attr("class", "name")
+            .style("fill", "#fff")
+            .style("font-size", "12px")
+            .attr("transform", "translate(" + 70 + 
+                    ", " + 80 + ")")
             .attr("x", function(d){
                 if (d3.min(vis.dataFiltered, function(d) { return d.sentiment;} ) > 0){
                     return 140;
@@ -133,6 +151,8 @@ PosNegChart.prototype.wrangleData = function(){
             .attr("x2", vis.x(0))
             .attr("y1", 0 + 12)
             .attr("y2", vis.height - 12)
+            .attr("transform", "translate(" + 70 + 
+                    ", " + 80 + ")")
             .attr("stroke", "#3a403d")
             .attr("stroke-width", "1px");
 

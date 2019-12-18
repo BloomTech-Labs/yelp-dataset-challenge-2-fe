@@ -10,7 +10,7 @@ Histogram = function(_parentElement){
 Histogram.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { left:50, right:50, top:70, bottom:30 };
+    vis.margin = { left:50, right:50, top:80, bottom:50 };
     vis.height = 450 - vis.margin.top - vis.margin.bottom;
     vis.width = 400 - vis.margin.left - vis.margin.right;
 
@@ -31,13 +31,21 @@ Histogram.prototype.initVis = function(){
                 .attr("transform", 
                     "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    vis.svg.append("rect")
+                .attr("id", "shadow")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("transform", "translate(" + 0 + 
+                    ", " + 30 + ")")
+                .attr("fill", "#27293d");
+
     vis.title = vis.svg.append("text")
                 .attr("class", "chart-label")
                 .attr("x", vis.width/2)
                 .attr("y", -20)
                 .attr("text-anchor", "middle")
                 // .attr("font-family", "azo-sans-web, sans-serif")
-                // .style('fill', '#fff')
+                .style('fill', '#fff')
                 .text("Distribution of Star Ratings")
 
     vis.wrangleData();
@@ -58,15 +66,19 @@ Histogram.prototype.wrangleData = function(){
         .call(vis.xAxis)
         .selectAll("text")
             .style("text-anchor", "middle")
+            .attr("transform", "translate(" + 0 + 
+            ", " + 30 + ")")
 
-    vis.svg.append("g")
-        .attr("class", "y axis")
-        .call(vis.yAxis)
+    // vis.svg.append("g")
+    //     .attr("class", "y axis")
+    //     .call(vis.yAxis)
 
     vis.svg.selectAll("bar")
         .data(vis.dataFiltered)
         .enter().append("rect")
-        .style("fill", "steelblue")
+        .style("fill", "#2081d9")
+        .attr("transform", "translate(" + 0 + 
+            ", " + 30 + ")")
         .attr("x", function(d) { return vis.x(d.stars); })
         .attr("width", vis.x.bandwidth())
         .attr("y", function(d) { return vis.height; })

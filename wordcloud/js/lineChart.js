@@ -12,17 +12,40 @@ LineChart = function(_parentElement){
 LineChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { left:50, right:50, top:50, bottom:50 };
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
-    vis.width = 400 - vis.margin.left - vis.margin.right;
+    vis.margin = { left:50, right:50, top:90, bottom:50 };
+    vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.width = 750 - vis.margin.left - vis.margin.right;
 
     vis.svg = d3.select(vis.parentElement)
         .append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+
+    vis.defs = vis.svg.append("defs");
+
+        //Filter for the outside glow
+        vis.filter = vis.defs.append("filter")
+            .attr("id","glow");
+        vis.filter.append("feGaussianBlur")
+            .attr("stdDeviation","4")
+            .attr("result","coloredBlur");
+        vis.feMerge = vis.filter.append("feMerge");
+        vis.feMerge.append("feMergeNode")
+            .attr("in","coloredBlur");
+        vis.feMerge.append("feMergeNode")
+            .attr("in","SourceGraphic");
+
+    vis.svg.append("rect")
+        .attr("id", "shadow")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("fill", "#27293d")
+        .style("filter", "url(#glow)");
+
     vis.g = vis.svg.append("g")
         .attr("transform", "translate(" + vis.margin.left + 
             ", " + vis.margin.top + ")");
+
 
     vis.t = function() { return d3.transition().duration(1000); }
 
@@ -36,11 +59,11 @@ LineChart.prototype.initVis = function(){
     vis.title = vis.g.append("text")
     .attr("class", "chart-label")
     .attr("x", vis.width/2)
-    .attr("y", -20)
+    .attr("y", -35)
     .attr("text-anchor", "middle")
-    // .attr("font-family", "azo-sans-web, sans-serif")
-    // .style('fill', '#fff')
-    .text("Star Rating")
+    .attr("font-size", "17px")
+    .style('fill', '#fff')
+    .text("Star Rating Over Time")
 
     vis.x = d3.scaleTime().range([0, vis.width]);
     vis.y = d3.scaleLinear().range([vis.height, 0]);
@@ -51,6 +74,7 @@ LineChart.prototype.initVis = function(){
     vis.xAxis = vis.g.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + vis.height +")");
+        // .style({ 'stroke': '#fff', 'fill': 'none', 'stroke-width': '0.5px'});
     vis.yAxis = vis.g.append("g")
         .attr("class", "y axis");
 
@@ -104,6 +128,7 @@ LineChart.prototype.updateVis = function(){
 
     focus.append("text")
         .attr("x", 15)
+        .style("fill", '#fff')
         .attr("dy", ".31em");
 
     vis.svg.append("rect")
@@ -135,7 +160,7 @@ LineChart.prototype.updateVis = function(){
     
     vis.g.select(".line").merge(vis.linePath)
         .attr("d", line(vis.dataFiltered))
-        .attr("stroke", "url(#linear-gradient)")
+        .attr("stroke", "#2081d9")
         .attr("stroke-width", "1")
         .attr("fill", "none");
 
@@ -150,9 +175,12 @@ LineChart.prototype.updateVis = function(){
             .attr("stroke-dashoffset", 0);
 
     vis.g.select(".line")
-        .attr("stroke", color(5))
+        .attr("stroke", "#2081d9")
         .transition(vis.t)
         .attr("d", line(vis.dataFiltered));
+
+    d3.selectAll(".line")
+        .style("filter", "url(#glow)");
 
 };
 
